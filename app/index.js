@@ -1,5 +1,6 @@
 require('express-async-errors');
 require('./startUp/config')();
+require('./startUp/db')();
 
 const app = require('express')();
 const config = require('config');

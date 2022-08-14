@@ -1,3 +1,4 @@
 {
+    "databaseURI": "mongodb://localhost/availability_api",
     "apiKey": "bbb866608509e1951f026f600b429a0e61fd204a"
 }
