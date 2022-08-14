@@ -1,0 +1,11 @@
+{
+  "name": "availability_api",
+  "version": "1.0.0",
+  "description": "API for calculating the best meeting slots across time zones",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "John Kennedy Kalu",
+  "license": "ISC"
+}
