@@ -1,5 +1,6 @@
 const express = require('express');
 const countryRouter = require('../routes/countryRoutes');
+const holidayRouter = require('../routes/holidayRoutes');
 const errorHandler = require('../middleware/errorHandler');
 
 module.exports = (app) => {
@@ -8,5 +9,6 @@ module.exports = (app) => {
     app.use(errorHandler);
 
     // Routes
-    app.use('/api/countries', countryRouter)
+    app.use('/api/countries', countryRouter);
+    app.use('/api/holidays', holidayRouter);
 };

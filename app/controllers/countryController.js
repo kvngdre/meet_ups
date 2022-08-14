@@ -2,6 +2,10 @@ const debug = require('debug')('app:countryCtrl');
 const Country = require('../models/countryModel');
 
 const countryCtrlFuncs = {
+    /**
+     * Fetches the list of supported countries.
+     * @returns {[Object]} Array of countries.
+     */
     getAll: async () => {
         try {
             const countryList = await Country.aggregate([
@@ -41,7 +45,7 @@ const countryCtrlFuncs = {
         } catch (error) {
             return error;
         }
-    },
+    }
 };
 
 module.exports = countryCtrlFuncs;
