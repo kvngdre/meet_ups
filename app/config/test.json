@@ -1,0 +1,3 @@
+{
+    "databaseURI": "mongodb://localhost/availability_api_test"
+}

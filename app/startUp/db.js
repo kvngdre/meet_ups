@@ -14,14 +14,14 @@ function connectAndSeedDB() {
             debug(`Failed to connect to database ${err}`);
         });
 
-    const seedDB = async () => {
-        await Country.deleteMany({});
-        await Country.insertMany(seedData);
-    };
+    // const seedDB = async () => {
+    //     await Country.deleteMany({});
+    //     await Country.insertMany(seedData);
+    // };
 
-    seedDB().then(() => {
-        mongoose.connection.close();
-    });
+    // seedDB().then(() => {
+    //     mongoose.connection.close();
+    // });
 }
 
 module.exports = connectAndSeedDB;

@@ -8,8 +8,7 @@ const appRoutes = require('./startUp/routes');
 
 appRoutes(app);
 
-const host = config.get('server.host');
 const port = config.get('server.port');
 app.listen(port, () => {
-    console.log(`Server running on http://${host}:${port}`);
+    console.log(`Server running on port: ${port}`);
 });
