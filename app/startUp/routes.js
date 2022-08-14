@@ -6,9 +6,11 @@ const errorHandler = require('../middleware/errorHandler');
 module.exports = (app) => {
     // Middleware
     app.use(express.json());
-    app.use(errorHandler);
-
+    
     // Routes
     app.use('/api/countries', countryRouter);
     app.use('/api/holidays', holidayRouter);
+    
+    // Error Handler
+    app.use(errorHandler);
 };

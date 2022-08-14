@@ -38,14 +38,23 @@ const countryCtrlFuncs = {
 
     getOne: async (countryCode) => {
         try {
+            if (typeof countryCode !== 'string')
+                throw new Error('Invalid country code');
+
+            countryCode = countryCode.toUpperCase();
             const country = await Country.findOne({ countryCode }).select([
+                '-_id',
                 'countryCode',
                 'countryName',
+                'timeZone'
             ]);
+            if (!country) throw new Error('Country not supported');
+            
+            return country;
         } catch (error) {
             return error;
         }
-    }
+    },
 };
 
 module.exports = countryCtrlFuncs;
