@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const validators = {
-    getHolidays: function (requestBody) {
+    validateGetHoliday: function (requestBody) {
         const schema = Joi.object({
             country_code: Joi.string()
                             .length(2)

@@ -12,7 +12,7 @@ function isIsoDate(dateTimeStr, helper) {
 function isGreaterThanNow(dateTimeStr, helper) {
     const d = new Date(dateTimeStr).toISOString().split('T')[0];
     
-    if(d < new Date().toISOString().split('T')[0]) return helper.message('{#label} must be less than "now"');
+    if(d < new Date().toISOString().split('T')[0]) return helper.message('{#label} must be greater than "now"');
 
     return true;
 }

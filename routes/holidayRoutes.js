@@ -3,7 +3,7 @@ const holidayReqValidators = require('../validators/holidayValidator');
 const holidayCtrlFuncs = require('../controllers/holidayController');
 
 router.post('/', async (req, res) => {
-    const { error } = holidayReqValidators.getHolidays(req.body);
+    const { error } = holidayReqValidators.validateGetHoliday(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
     const holidays = await holidayCtrlFuncs.getHolidays(

@@ -1,0 +1,5 @@
+{
+    "databaseURI": "DATABASE_CONNECTION_STRING",
+    "testDatabaseURI": "TEST_DATABASE_CONNECTION_STRING",
+    "apiKey": "API_KEY"
+}

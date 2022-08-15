@@ -28,9 +28,6 @@ const meetingFuncs = {
             });
 
             const hour = users[0].from.setZone(users[0].timeZone).hour;
-            console.log(users[0].from.toString());
-            console.log(users[0].from.setZone(users[0].timeZone).toString());
-            console.log(hour);
 
             /* Find the dateTime in UTC such that when converted to local time of the user with the 
             smallest offset the hour would be between 9:00am and 2:00pm */
@@ -69,7 +66,7 @@ const meetingFuncs = {
             }
 
             let result = findValidDateTIme(minStartDateTIme, users);
-            if ('error' in result) return { users, result };
+            if ('error' in result) return {result};
 
             // Check if the suggested date for the meeting is a holiday in any of the countries.
             meetDateTime = await checkForHoliday(result, users);
@@ -80,7 +77,7 @@ const meetingFuncs = {
                 to: meetDateTime.plus({ hours: 2 }),
             };
 
-            return { users, result };
+            return {result};
         } catch (error) {
             debug(error);
             return error;

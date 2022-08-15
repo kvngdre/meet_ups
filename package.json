@@ -4,14 +4,15 @@
   "description": "API for calculating the best meeting slots across time zones",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
-    "devStart": "cross-env NODE_ENV=development DEBUG=app:* nodemon app/index.js"
+    "test": "jest --verbose --detectOpenHandles --forceExit",
+    "devStart": "cross-env NODE_ENV=development DEBUG=app:* node index.js"
   },
   "author": "John Kennedy Kalu",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
     "config": "^3.3.7",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "joi": "^17.6.0",

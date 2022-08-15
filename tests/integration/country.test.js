@@ -3,10 +3,10 @@ const request = require('supertest');
 const Country = require('../../models/countryModel');
 
 describe('/api/countries', () => {
-    beforeEach(() => {
+    beforeAll(() => {
         server = require('../../index');
     });
-    afterEach(async () => {
+    afterAll(async () => {
         await Country.deleteMany({});
         server.close();
     });
@@ -42,7 +42,9 @@ describe('/api/countries', () => {
 
             expect(response.status).toBe(200);
             expect(response.body.length).toBe(4);
-            expect(response.body.some(country => country.name = 'AA')).toBeTruthy();
+            expect(
+                response.body.some((country) => (country.name = 'AA'))
+            ).toBeTruthy();
         });
     });
 });

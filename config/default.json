@@ -1,6 +1,6 @@
 {
     "server": {
         "host": "localhost",
-        "port": 7700
+        "port": 7000
     }
 }
