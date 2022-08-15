@@ -10,9 +10,9 @@ Create a dotenv file with the following environment variables
 `API_KEY`
 
 #### Docker
-* Build docker
+ - Build docker
 * `docker build -t app .`
-* Run docker image
+- Run docker image
 * `docker run -p 7000:7000 -it app`
 
 ### How To Run The Test Suite
