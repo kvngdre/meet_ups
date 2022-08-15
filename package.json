@@ -4,7 +4,7 @@
   "description": "API for calculating the best meeting slots across time zones",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "devStart": "cross-env NODE_ENV=development DEBUG=app:* nodemon app/index.js"
   },
   "author": "John Kennedy Kalu",
