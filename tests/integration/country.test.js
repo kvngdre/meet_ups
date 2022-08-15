@@ -1,6 +1,5 @@
-const config = require('config');
+let server;
 const request = require('supertest');
-const server = require('../../index');
 
 describe('/api/countries', () => {
     beforeEach( () => {
