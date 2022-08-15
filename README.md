@@ -4,10 +4,10 @@
 
 ### How To Start The Project
 #### Dotenv
-Create a dotenv file with the following environment variables
-1. DATABASE_CONNECTION_STRING
-2. TEST_DATABASE_CONNECTION_STRING
-3. API_KEY
+Create a dotenv file with the following environment variables  
+`DATABASE_CONNECTION_STRING`
+`TEST_DATABASE_CONNECTION_STRING`
+`API_KEY`
 
 #### Docker
 * Build docker
@@ -17,4 +17,4 @@ Create a dotenv file with the following environment variables
 
 ### How To Run The Test Suite
 Run
-`npm test`
+* `npm test`
