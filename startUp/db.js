@@ -13,12 +13,11 @@ function connectAndSeedDB() {
         .catch((err) => {
             debug(`Failed to connect to database ${err}`);
         });
-
+    
     async () => {
         await Country.deleteMany({});
         await Country.insertMany(seedData);
     };
-
 }
 
 module.exports = connectAndSeedDB;
