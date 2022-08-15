@@ -68,13 +68,12 @@ const meetingFuncs = {
 
             let result = findValidDateTIme(minStartDateTIme, users);
             if ('error' in result) return { users, result };
-            console.log(result)
             
-            users = await checkForHoliday(result, users)
+            meetDateTime = await checkForHoliday(result, users)
 
             result = {
-                from: result,
-                to: result.plus({ hours: 2 }),
+                from: meetDateTime,
+                to: meetDateTime.plus({ hours: 2 }),
             };
 
             return { users, result };

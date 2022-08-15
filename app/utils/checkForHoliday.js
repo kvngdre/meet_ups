@@ -1,7 +1,7 @@
 const debug = require('debug')('app:checkHoliday');
 const { getHolidays } = require('../controllers/holidayController');
 
-module.exports = async (dateTime, users) => {
+async function checkForHoliday(dateTime, users) {
     try {
         let foundHoliday = false;
 
@@ -9,8 +9,8 @@ module.exports = async (dateTime, users) => {
             const response = await getHolidays(
                 user.country_code,
                 dateTime.year,
-                dateTIme.month,
-                dateTIme.day
+                dateTime.month,
+                dateTime.day
             );
 
             if (response.holidays[0]?.type[0] === 'National holiday')
@@ -20,15 +20,16 @@ module.exports = async (dateTime, users) => {
         }
 
         if (foundHoliday) {
-            dateTime = dateTime.plus({days: 1})
+            dateTime = dateTime.plus({ days: 1 });
 
             checkForHoliday(dateTime, users);
         }
 
         return dateTime;
-
     } catch (error) {
         debug(error);
         return error;
     }
 }
+
+module.exports = checkForHoliday;
