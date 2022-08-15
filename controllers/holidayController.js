@@ -13,7 +13,7 @@ const holidayCtrlFuncs = {
      */
     getHolidays: async (country, year, month = '', day = '') => {
         try {
-            const url = `https://calendarific.com/api/v2/holidays?&api_key=${config.get(
+        const url = `https://calendarific.com/api/v2/holidays?&api_key=${config.get(
                 'apiKey'
             )}&country=${country}&year=${year}&month=${month}&day=${day}`;
 

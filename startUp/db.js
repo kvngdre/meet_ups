@@ -6,7 +6,7 @@ function connectAndSeedDB() {
     let db;
     if(process.env['NODE_ENV'] === 'test') db = config.get('testDatabaseURI')
     else db = config.get('databaseURI')
-    console.log(db)
+    
     mongoose
         .connect(db)
         .then(() => {
