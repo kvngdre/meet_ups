@@ -24,31 +24,7 @@ const holidayCtrlFuncs = {
             debug(error);
             return error;
         }
-    },
-
-    checkForHoliday: async (arr) => {
-        try {
-            let foundHoliday = false;
-
-            for (let user of arr) {
-                const response = await this.getHolidays(
-                    user.country_code,
-                    user.from.year,
-                    user.from.month,
-                    user.from.day
-                );
-
-                if (response.holidays[0]?.type[0] === 'National holiday') {
-                    foundHoliday = true;
-                    break;
-                }
-            }
-            return foundHoliday;
-        } catch (error) {
-            debug(error);
-            return error;
-        }
-    },
+    }
 };
 
 module.exports = holidayCtrlFuncs;
