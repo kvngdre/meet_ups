@@ -73,6 +73,7 @@ const meetingFuncs = {
 
             // Check if the suggested date for the meeting is a holiday in any of the countries.
             meetDateTime = await checkForHoliday(result, users);
+            if(meetDateTime instanceof Error) throw new Error('Connection failed')
 
             result = {
                 from: meetDateTime,
