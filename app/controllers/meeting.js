@@ -48,11 +48,10 @@ const meetingFuncs = {
                 let valid = false;
 
                 for (let i = 0; i <= 24; i++) {
-                    start = start.plus({ hours: 1 });
                     for (let u of arr) {
                         // Find UTC time when converted to user local time is within 9am and 4pm
                         const h = start.setZone(u.timeZone).hour;
-                        if (h > 6 && h < 23) {
+                        if (h > 8 && h < 17) {
                             valid = true;
                         } else {
                             valid = false;
@@ -60,6 +59,9 @@ const meetingFuncs = {
                         }
                     }
                     if (valid) break;
+
+                    // increment start by an hour
+                    start = start.plus({ hours: 1 });
                 }
                 if (!valid) return { error: 'No suitable time' };
 
@@ -68,8 +70,9 @@ const meetingFuncs = {
 
             let result = findValidDateTIme(minStartDateTIme, users);
             if ('error' in result) return { users, result };
-            
-            meetDateTime = await checkForHoliday(result, users)
+
+            // Check if the suggested date for the meeting is a holiday in any of the countries.
+            meetDateTime = await checkForHoliday(result, users);
 
             result = {
                 from: meetDateTime,
