@@ -1,7 +1,7 @@
 # AVAILABILITY API
 Node API for calculating the best meeting slots across time zones for multiple users.
 
-### Getting Started:
+## Getting Started
 Create a dotenv file with the following environment variables  
 - DATABASE_CONNECTION_STRING=
 - TEST_DATABASE_CONNECTION_STRING=
