@@ -2,24 +2,25 @@
 
 ## API for calculating the best meeting slots across time zones
 
-### To Start The Project:
-#### Dotenv
+### Getting Started:
 Create a dotenv file with the following environment variables  
-`DATABASE_CONNECTION_STRING`
-`TEST_DATABASE_CONNECTION_STRING`
-`API_KEY`
+- DATABASE_CONNECTION_STRING=
+- TEST_DATABASE_CONNECTION_STRING=
+- API_KEY=
 
-#### Docker
- - Build docker
-* `docker build -t app .`
-- Run docker image
-* `docker run -p 7000:7000 -it app`
+### Docker file
+First build docker by running:
+```sh
+docker build -t app .
+```
+then run the docker image:
+```sh
+docker run -p 7000:7000 -it app
+```
+That's it you're all set.
 
-### To Run The Test Suite:
-Run
-* `npm test`
-
-### Reasons For Using API and Third Party Packages
-- Luxon: Luxon is an amazing npm package for working with date and time. It provides easy to use methods and also handles the issue of daylight saving time.
-
-- Calendarific: They provide an API services for fetching holidays of any country and allow specification of the year, month and day. Using this help enable the solution to be holiday aware.
+### Test Suite:
+To run the test suite, run:
+```sh
+npm test
+```
