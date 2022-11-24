@@ -1,6 +1,5 @@
 # AVAILABILITY API
-
-## API for calculating the best meeting slots across time zones
+Node API for calculating the best meeting slots across time zones for multiple users.
 
 ### Getting Started:
 Create a dotenv file with the following environment variables  
