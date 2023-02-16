@@ -8,7 +8,8 @@ if (foundEnv.error && process.env.NODE_ENV !== 'production')
     throw new Error('⚠ Could not find .env file.');
 
 const configurations = {
-    api: { prefix: '/api', version: '/v1' },
+    api: { key: process.env.API_KEY, prefix: '/api', version: '/v1' },
+    db: {},
     port: process.env.PORT,
 };
 

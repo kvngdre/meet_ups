@@ -2,12 +2,12 @@
     "name": "availability_api",
     "version": "1.0.0",
     "description": "API for calculating the best meeting slots across time zones",
-    "main": "index.js",
+    "main": "src/server.ts",
     "scripts": {
         "build": "tsc",
         "dev": "nodemon --exec node --loader ts-node/esm src/server.ts",
-        "test": "jest",
-        "start": "node index.js"
+        "start": "node build/src/server.js",
+        "test": "jest"
     },
     "type": "module",
     "author": "John Kennedy Kalu",
