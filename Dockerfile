@@ -12,4 +12,4 @@ ADD . /app
 # your app should run in the port below
 EXPOSE 7000
 
-CMD ["npm", "run", "devStart"]
+CMD ["npm", "run", "dev"]

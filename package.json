@@ -1,28 +1,28 @@
 {
-  "name": "availability_api",
-  "version": "1.0.0",
-  "description": "API for calculating the best meeting slots across time zones",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --verbose --detectOpenHandles --forceExit",
-    "devStart": "cross-env NODE_ENV=development DEBUG=app:* node index.js"
-  },
-  "author": "John Kennedy Kalu",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.27.2",
-    "config": "^3.3.7",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "express-async-errors": "^3.1.1",
-    "joi": "^17.6.0",
-    "luxon": "^3.0.1",
-    "mongoose": "^6.5.2"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "debug": "^4.3.4",
-    "jest": "^28.1.3",
-    "supertest": "^6.2.4"
-  }
+    "name": "availability_api",
+    "version": "1.0.0",
+    "description": "API for calculating the best meeting slots across time zones",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --verbose --detectOpenHandles --forceExit ",
+        "dev": "cross-env NODE_ENV=development DEBUG=app:* node src/index.js",
+        "start": "node index.js"
+    },
+    "type": "module",
+    "author": "John Kennedy Kalu",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.27.2",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "express-async-errors": "^3.1.1",
+        "joi": "^17.6.0",
+        "luxon": "^3.0.1",
+        "mongoose": "^6.5.2"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "jest": "^28.1.3",
+        "supertest": "^6.2.4"
+    }
 }
