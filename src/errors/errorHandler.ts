@@ -1,5 +1,5 @@
-import BaseError from './BaseError.js';
-import logger from '../loaders/logger.js';
+import BaseError from './BaseError';
+import logger from '../loaders/logger';
 
 class ErrorHandler {
     public handlerError(err: Error): void {

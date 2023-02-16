@@ -1,6 +1,6 @@
-import errorHandler from '../errors/errorHandler.js';
+import errorHandler from '../errors/errorHandler';
 import { Request, Response, NextFunction } from 'express';
-import httpCodes from '../enums/httpCodes.js';
+import httpCodes from '../enums/httpCodes';
 
 export default (
     err: Error,

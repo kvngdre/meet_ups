@@ -1,7 +1,10 @@
+import config from '../config/config';
+import cors from 'cors';
+import errorMiddleware from '../middleware/error.middleware';
 import express, { Application, Request, Response } from 'express';
-import config from '../config/config.js';
-import httpCodes from '../enums/httpCodes.js';
-import errorMiddleware from '../middleware/error.middleware.js';
+import helmet from 'helmet';
+import httpCodes from '../enums/httpCodes';
+import NotFoundError from '../errors/NotFoundError';
 
 const { api } = config;
 
@@ -11,13 +14,17 @@ export default function (app: Application) {
         res.status(httpCodes.OK).send('Ok ✔');
     });
 
+    app.use(helmet());
+
+    app.use(cors());
+
     app.use(express.json());
 
     app.use(api.prefix + api.version, () => {});
 
     // Handle Page 404 error
     app.use((req, res, next) => {
-        const err = new Error('Page not found.');
+        const err = new NotFoundError('Page not found.');
 
         next(err);
     });

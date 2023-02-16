@@ -1,3 +1,7 @@
+import { Router } from 'express';
+
+const router = Router();
+
 // const router = require('express').Router();
 // const meetingController = require('../controllers/meeting');
 // const meetingValidators = require('../validators/meetingValidator');
@@ -12,4 +16,4 @@
 //     return res.status(200).send(response);
 // });
 
-// module.exports = router;
+export default router;

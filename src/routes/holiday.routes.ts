@@ -1,3 +1,7 @@
+import { Router } from 'express';
+
+const router = Router();
+
 // const router = require('express').Router();
 // const holidayReqValidators = require('../validators/holidayValidator');
 // const holidayCtrlFuncs = require('../controllers/holidayController');
@@ -20,4 +24,4 @@
 //     return res.status(200).send(holidays);
 // });
 
-// module.exports = router;
+export default router;

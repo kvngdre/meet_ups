@@ -1,9 +1,9 @@
 import 'express-async-errors';
-import config from './config/config.js';
-import express, { Application } from 'express';
-import loaders from './loaders/index.js';
+import config from './config/config';
+import express from 'express';
+import loaders from './loaders/index';
 
-const app: Application = express();
+const app = express();
 
 loaders(app);
 

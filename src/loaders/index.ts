@@ -1,6 +1,6 @@
-import expressLoader from "./express.loader.js";
+import expressLoader from "./express.loader";
 import { Application } from 'express';
-import logger from "./logger.js";
+import logger from "./logger";
 
 export default (app: Application) => {
     expressLoader(app);
