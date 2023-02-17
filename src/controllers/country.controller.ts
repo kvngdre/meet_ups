@@ -1,60 +1,58 @@
-// const debug = require('debug')('app:countryCtrl');
-// const Country = require('../models/countryModel');
+import { ParamWithId } from '../interfaces/IParamsWithId';
+import { Request, Response } from 'express';
+import APIResponse from '../utils/APIResponse';
+import CountryService from '../services/country.service';
+import httpCodes from '../enums/httpCodes';
+import { validateNewCountryDto } from '../validators/country.validators';
 
-// const countryCtrlFuncs = {
-//     /**
-//      * Fetches the list of supported countries.
-//      * @returns {[Object]} Array of countries.
-//      */
-//     getAll: async () => {
-//         try {
-//             const countryList = await Country.aggregate([
-//                 {
-//                     $group: {
-//                         _id: '$countryCode',
-//                         countryCode: { $first: '$countryCode' },
-//                         countryName: { $first: '$countryName' },
-//                     },
-//                 },
-//                 {
-//                     $sort: {
-//                         _id: 1,
-//                     },
-//                 },
-//                 {
-//                     $project: {
-//                         _id: 0,
-//                     },
-//                 },
-//             ]).exec();
-//             if (countryList.length == 0) throw new Error('No country data');
+function getMessage(count: string | number) {
+    if (typeof count === 'string') count = parseInt(count);
 
-//             return countryList;
-//         } catch (error) {
-//             debug(error);
-//             return error;
-//         }
-//     },
+    if (count === 1) return `${count} country found.`;
+    return `${count} countries found.`;
+}
 
-//     getOne: async (countryCode) => {
-//         try {
-//             if (typeof countryCode !== 'string')
-//                 throw new Error('Invalid country code');
+class CountryController {
+    static async createCountry(req: Request, res: Response) {
+        const value = validateNewCountryDto.safeParse(req.body);
+        console.log(value);
+        
+        const newCountry = await CountryService.create(req.body);
+        const response = new APIResponse('Country created.', newCountry);
 
-//             countryCode = countryCode.toUpperCase();
-//             const country = await Country.findOne({ countryCode }).select([
-//                 '-_id',
-//                 'countryCode',
-//                 'countryName',
-//                 'timeZone'
-//             ]);
-//             if (!country) throw new Error('Country not supported');
-            
-//             return country;
-//         } catch (error) {
-//             return error;
-//         }
-//     },
-// };
+        return res.status(httpCodes.CREATED).json(response);
+    }
 
-// module.exports = countryCtrlFuncs;
+    static async getAllCountries(req: Request, res: Response) {
+        const { count, foundCountries } = await CountryService.getCountries();
+        const response = new APIResponse(getMessage(count), foundCountries);
+
+        return res.status(httpCodes.OK).json(response);
+    }
+
+    static async getCountry(req: Request<ParamWithId>, res: Response) {
+        const foundCountry = await CountryService.getCountry(req.params.id);
+        const response = new APIResponse('Retrieved country.', foundCountry);
+
+        return res.status(httpCodes.OK).json(response);
+    }
+
+    static async updateCountry(req: Request<ParamWithId>, res: Response) {
+        const updatedCountry = await CountryService.updateCountry(
+            req.params.id,
+            req.body
+        );
+        const response = new APIResponse('Country updated.', updatedCountry);
+
+        return res.status(httpCodes.OK).json(response);
+    }
+
+    static async deleteCountry(req: Request<ParamWithId>, res: Response) {
+        await CountryService.deleteCountry(req.params.id);
+        const response = new APIResponse('COuntry deleted.');
+
+        return res.status(httpCodes.OK).json(response);
+    }
+}
+
+export default CountryController;

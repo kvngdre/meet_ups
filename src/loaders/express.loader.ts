@@ -5,6 +5,7 @@ import express, { Application, Request, Response } from 'express';
 import helmet from 'helmet';
 import httpCodes from '../enums/httpCodes';
 import NotFoundError from '../errors/NotFoundError';
+import routes from '../routes';
 
 const { api } = config;
 
@@ -20,12 +21,11 @@ export default function (app: Application) {
 
     app.use(express.json());
 
-    app.use(api.prefix + api.version, () => {});
+    app.use(api.prefix + api.version, routes());
 
     // Handle Page 404 error
     app.use((req, res, next) => {
-        const err = new NotFoundError('Page not found.');
-
+        const err = new NotFoundError('Resource not found.');
         next(err);
     });
 

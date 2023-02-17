@@ -1,15 +1,23 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import { ICountryInput } from '../interfaces/ICountry';
+import ValidationError from '../errors/ValidationError';
 
 const prisma = new PrismaClient();
 
 class CountryDAO {
     static async insert(newRecordDto: ICountryInput) {
-        const newRecord = await prisma.country.create({
-            data: newRecordDto,
-        });
+        try {
+            const newRecord = await prisma.country.create({
+                data: newRecordDto,
+            });
 
-        return newRecord;
+            return newRecord;
+        } catch (exception: any) {
+            if (exception instanceof Prisma.PrismaClientValidationError)
+                throw new ValidationError(exception.message);
+
+            throw exception;
+        }
     }
 
     static async findAll(queryObject?: Partial<ICountryInput>) {

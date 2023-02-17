@@ -9,7 +9,6 @@ if (foundEnv.error && process.env.NODE_ENV !== 'production')
 
 const configurations = {
     api: { key: process.env.API_KEY, prefix: '/api', version: '/v1' },
-    db: {},
     port: process.env.PORT,
 };
 

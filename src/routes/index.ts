@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import countryRouter from './country.routes.js';
-import holidayRouter from './holiday.routes.js';
-import meetingRouter from './meeting.routes.js';
+import countryRoutes from './country.routes';
+import holidayRoutes from './holiday.routes';
+import meetingRoutes from './meeting.routes';
 
 const router = Router();
 
 export default () => {
-    router.use('/countries', countryRouter);
-    router.use('/holidays', holidayRouter);
-    router.use('/meeting-time', meetingRouter);
+    router.use('/country', countryRoutes);
+    router.use('/holidays', holidayRoutes);
+    router.use('/meeting-time', meetingRoutes);
 
     return router;
 };
