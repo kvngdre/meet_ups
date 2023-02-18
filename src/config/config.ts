@@ -8,8 +8,12 @@ if (foundEnv.error && process.env.NODE_ENV !== 'production')
     throw new Error('⚠ Could not find .env file.');
 
 const configurations = {
-    api: { key: process.env.API_KEY, prefix: '/api', version: '/v1' },
+    api: { prefix: '/api', version: '/v1' },
     port: process.env.PORT,
+    holidayAPI: {
+        url: process.env.API_URL,
+        key: process.env.API_KEY,
+    },
 };
 
 export default configurations;
