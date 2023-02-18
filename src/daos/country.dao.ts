@@ -1,5 +1,7 @@
-import { PrismaClient, Prisma } from '@prisma/client';
 import { ICountryInput } from '../interfaces/ICountry';
+import { PrismaClient, Prisma } from '@prisma/client';
+import { prismaErrorCodes } from '../enums/prismaErrorCodes';
+import NotFoundError from '../errors/NotFoundError';
 import ValidationError from '../errors/ValidationError';
 
 const prisma = new PrismaClient();
@@ -14,7 +16,7 @@ class CountryDAO {
             return newRecord;
         } catch (exception: any) {
             if (exception instanceof Prisma.PrismaClientValidationError)
-                throw new ValidationError(exception.message);
+                throw new ValidationError('Validation Error.');
 
             throw exception;
         }
@@ -24,43 +26,70 @@ class CountryDAO {
         const foundRecords = await prisma.country.findMany({
             where: queryObject,
         });
+        if (foundRecords.length == 0)
+            throw new NotFoundError('No countries found.');
 
         return foundRecords;
     }
 
     static async findById(id: string) {
-        const foundRecord = await prisma.country.findUniqueOrThrow({
-            where: {
-                id,
-            },
-        });
+        try {
+            const foundCountry = await prisma.country.findUniqueOrThrow({
+                where: { id },
+            });
 
-        return foundRecord;
+            return foundCountry;
+        } catch (exception: any) {
+            if (exception instanceof Prisma.PrismaClientKnownRequestError)
+                if (exception.code === prismaErrorCodes.NOT_FOUND)
+                    throw new NotFoundError('Country not found.');
+
+            throw exception;
+        }
     }
 
     static async findOne(queryObject: Partial<ICountryInput>) {
-        const foundRecord = await prisma.country.findFirstOrThrow({
-            where: queryObject,
-        });
+        try {
+            const foundRecord = await prisma.country.findFirstOrThrow({
+                where: queryObject,
+            });
 
-        return foundRecord;
+            return foundRecord;
+        } catch (exception: any) {
+            if (exception instanceof Prisma.PrismaClientKnownRequestError)
+                throw new Error('Country not found');
+        }
     }
 
     static async update(id: string, updateRecordDto: Partial<ICountryInput>) {
-        const updatedRecord = await prisma.country.update({
-            where: { id },
-            data: updateRecordDto,
-        });
+        try {
+            const updatedRecord = await prisma.country.update({
+                where: { id },
+                data: updateRecordDto,
+            });
 
-        return updatedRecord;
+            return updatedRecord;
+        } catch (exception: any) {
+            if (exception instanceof Prisma.PrismaClientKnownRequestError)
+                throw new NotFoundError('Country not found.');
+
+            throw exception;
+        }
     }
 
     static async delete(id: string) {
-        const deletedRecord = await prisma.country.delete({
-            where: { id },
-        });
+        try {
+            const deletedRecord = await prisma.country.delete({
+                where: { id },
+            });
 
-        return deletedRecord;
+            return deletedRecord;
+        } catch (exception: any) {
+            if (exception instanceof Prisma.PrismaClientKnownRequestError)
+                throw new NotFoundError('Country not found.');
+
+            throw exception;
+        }
     }
 }
 

@@ -2,8 +2,9 @@ import { ParamWithId } from '../interfaces/IParamsWithId';
 import { Request, Response } from 'express';
 import APIResponse from '../utils/APIResponse';
 import CountryService from '../services/country.service';
+import cv from '../validators/country.validators';
 import httpCodes from '../enums/httpCodes';
-import { validateNewCountryDto } from '../validators/country.validators';
+import ValidationError from '../errors/ValidationError';
 
 function getMessage(count: string | number) {
     if (typeof count === 'string') count = parseInt(count);
@@ -14,10 +15,10 @@ function getMessage(count: string | number) {
 
 class CountryController {
     static async createCountry(req: Request, res: Response) {
-        const value = validateNewCountryDto.safeParse(req.body);
-        console.log(value);
-        
-        const newCountry = await CountryService.create(req.body);
+        const { value, error } = cv.validateNewCountryDto(req.body);
+        if (error) throw new ValidationError(error.message);
+
+        const newCountry = await CountryService.create(value!);
         const response = new APIResponse('Country created.', newCountry);
 
         return res.status(httpCodes.CREATED).json(response);
@@ -38,9 +39,12 @@ class CountryController {
     }
 
     static async updateCountry(req: Request<ParamWithId>, res: Response) {
+        const { value, error } = cv.validateUpdateCountryDto(req.body);
+        if (error) throw new ValidationError(error.message);
+
         const updatedCountry = await CountryService.updateCountry(
             req.params.id,
-            req.body
+            value!
         );
         const response = new APIResponse('Country updated.', updatedCountry);
 

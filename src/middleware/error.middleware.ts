@@ -10,7 +10,7 @@ export default (
     next: NextFunction
 ) => {
     errorHandler.handlerError(err);
-
+    
     if (errorHandler.isTrustedError(err))
         return res.status(err.code).json(new ErrorResponse(err.message));
 

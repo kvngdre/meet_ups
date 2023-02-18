@@ -2,7 +2,7 @@ import BaseError from './BaseError';
 import httpCodes from '../enums/httpCodes';
 
 class ValidationError extends BaseError {
-    constructor(description: string) {
+    constructor(description: any) {
         const httpCode = httpCodes.BAD_REQUEST;
         const isOperational = true;
 

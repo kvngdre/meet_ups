@@ -1,6 +1,5 @@
-import CountryDAO from '../daos/country.dao';
-import NotFoundError from '../errors/NotFoundError';
 import { ICountry, ICountryInput } from '../interfaces/ICountry';
+import CountryDAO from '../daos/country.dao';
 
 class CountryService {
     static async create(newCountryDto: ICountryInput): Promise<ICountry> {
@@ -9,13 +8,8 @@ class CountryService {
         return newCountry;
     }
 
-    static async getCountries(queryObject: Partial<ICountryInput> = {}) {
-        const foundCountries: ICountry[] = await CountryDAO.findAll(
-            queryObject
-        );
-        if (foundCountries.length)
-            throw new NotFoundError('No countries found.');
-
+    static async getCountries(queryObj: Partial<ICountryInput> = {}) {
+        const foundCountries: ICountry[] = await CountryDAO.findAll(queryObj);
         const count = Intl.NumberFormat('en-US').format(foundCountries.length);
 
         return { count, foundCountries };
@@ -23,7 +17,6 @@ class CountryService {
 
     static async getCountry(countryId: string) {
         const foundCountry = await CountryDAO.findById(countryId);
-
         return foundCountry;
     }
 
