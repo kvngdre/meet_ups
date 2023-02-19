@@ -1,6 +1,6 @@
 export interface IHolidayInput {
-    country: string;
-    year: string;
-    month?: string;
-    day?: string;
+    country_code: string;
+    year: number;
+    month?: number;
+    day?: number;
 }

@@ -10,7 +10,7 @@ class CountryValidator {
         .length(2, {
             message: 'Country code can only be 2 characters long.',
         })
-        .refine((val) => val.toUpperCase());
+        .transform((val) => val.toUpperCase());
 
     private countryNameSchema = z.string({
         required_error: 'Country name is required.',

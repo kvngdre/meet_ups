@@ -7,8 +7,8 @@ const router = Router();
 
 export default () => {
     router.use('/country', countryRoutes);
-    router.use('/holidays', holidayRoutes);
-    router.use('/meeting-time', meetingRoutes);
+    router.use('/holiday', holidayRoutes);
+    router.use('/meeting', meetingRoutes);
 
     return router;
 };

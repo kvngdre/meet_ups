@@ -57,7 +57,9 @@ class CountryDAO {
             return foundRecord;
         } catch (exception: any) {
             if (exception instanceof Prisma.PrismaClientKnownRequestError)
-                throw new Error('Country not found');
+                throw new NotFoundError('Country not found.');
+
+            throw exception;
         }
     }
 
