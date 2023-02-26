@@ -1,15 +1,13 @@
-FROM node:14-alpine
+FROM node:18.12.1-alpine3.17
+
 WORKDIR /app
 
-RUN apk update && apk add bash
-ADD package.json package.json
-ADD package-lock.json package-lock.json
+COPY package*.json .
+RUN npm install
+COPY . .
 
-RUN npm install --dev
+ENV NODE_ENV=development
 
-ADD . /app
+EXPOSE 8787
 
-# your app should run in the port below
-EXPOSE 7000
-
-CMD ["npm", "run", "dev"]
+ENTRYPOINT ["npm", "run", "dev"]
