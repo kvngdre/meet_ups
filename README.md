@@ -22,18 +22,22 @@ npm install
 Create a `.env` file in the root directory or you can use the `.env.example` file, it should contain these properties:
 
 - PORT=
-
 - API_KEY=
 - API_URL=
-
-- DATABASE_URL=
+- DATABASE_URL=  
 
 #### Docker
 
-- Build docker
+<br />
 
-* `docker build -t app .`
+Build docker image  
 
-- Run docker image
+```sh
+docker build -t meetup_app .
+```
 
-* `docker run -p 7000:7000 -it app`
+Run docker image
+
+```sh
+docker run -p 8787:8787 -it meetup_app
+```
