@@ -1,4 +1,4 @@
-# AVAILABILITY API
+# Meet Ups
 
 ## API for calculating the best meeting slots across time zones
 

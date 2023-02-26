@@ -107,7 +107,6 @@ async function checkForHoliday(
         await checkForHoliday(suitableDateTime, users);
     }
 
-    console.log('e', suitableDateTime.toString());
     return suitableDateTime;
 }
 
